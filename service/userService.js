@@ -139,7 +139,7 @@ async function deleteUser (ctx, next) {
     try {
         const { userId } = ctx.request.body
     
-        const delRes = await userCollection.deleteOne({ userId: +userId })
+        await userCollection.deleteOne({ userId: +userId })
         
         return { code: 0 , message: '删除成功' }
     } catch (err) {
@@ -160,8 +160,6 @@ async function allocateRole (ctx, next) {
         return { code: -1 , message: '分配角色失败' }
     }
 }
-
-
 
 async function userInfo (ctx, next) {
     try {

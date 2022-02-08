@@ -12,6 +12,7 @@ async function start () {
     const bodyParser = require('koa-bodyparser')
     const rq = require('./lib/req')
     const { checkLogin } = require('./middleware/checkLogin')
+    const { checkRight } = require('./middleware/checkRight')
 
     const app = new Koa()
 
@@ -31,6 +32,7 @@ async function start () {
 
     // 校验登录
     app.use(checkLogin)
+    app.use(checkRight)
 
     app.use(async (ctx, next) => {
         ctx.rq = rq

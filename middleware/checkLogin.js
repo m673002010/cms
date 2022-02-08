@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 
 async function checkLogin(ctx, next) {
     try {
-        if (['/user/login', '/user/logout', '/user/register'].includes(ctx.path)) await next()
+        if (['/user/login', '/user/logout', '/user/register', 'user/userInfo'].includes(ctx.path)) await next()
         else {
             const token = ctx.get('Authorization') // 获取请求 Header 中 Authorization 值
 
@@ -14,7 +14,7 @@ async function checkLogin(ctx, next) {
                 if (userInfo) {
                     ctx.userInfo = userInfo
                     await next()
-                } 
+                }
                 // ctx.body = { code: 0, message: '已登陆', data: { userInfo} }
             }
         }
